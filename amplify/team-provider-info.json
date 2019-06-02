@@ -1,0 +1,14 @@
+{
+    "sharer": {
+        "awscloudformation": {
+            "AuthRoleName": "shop-sharer-sharer-20190602181510-authRole",
+            "UnauthRoleArn": "arn:aws:iam::027960035846:role/shop-sharer-sharer-20190602181510-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::027960035846:role/shop-sharer-sharer-20190602181510-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "shop-sharer-sharer-20190602181510-deployment",
+            "UnauthRoleName": "shop-sharer-sharer-20190602181510-unauthRole",
+            "StackName": "shop-sharer-sharer-20190602181510",
+            "StackId": "arn:aws:cloudformation:eu-west-1:027960035846:stack/shop-sharer-sharer-20190602181510/fb912dd0-8559-11e9-83fe-0a9391483dc6"
+        }
+    }
+}
