@@ -1,0 +1,68 @@
+{
+    "identityPoolName": "shopsharereff8d053_identitypool_eff8d053",
+    "allowUnauthenticatedIdentities": false,
+    "lambdaLogPolicy": "shopsh_eff8d053_lambda_log_policy",
+    "openIdLambdaRoleName": "shopsh_eff8d053_openid_lambda_role",
+    "openIdRolePolicy": "shopsh_eff8d053_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "shopsh_eff8d053_openid_lambda_iam_policy",
+    "openIdLogPolicy": "shopsh_eff8d053_openid_lambda_log_policy",
+    "userPoolName": "shopsharereff8d053_userpool_eff8d053",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "shopsheff8d053_sns-role",
+    "roleExternalId": "shopsheff8d053_role_external_id",
+    "policyName": "shopsheff8d053-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "shopsheff8d053_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "shopsheff8d053_totp_lambda_role",
+    "mfaLambdaLogPolicy": "shopsheff8d053_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "shopsheff8d053_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "shopsheff8d053_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "shopsheff8d053_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "shopsheff8d053_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "shopsheff8d053_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "shopsharereff8d053",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default"
+}
