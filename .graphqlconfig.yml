@@ -1,0 +1,12 @@
+projects:
+  shopSharer:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - 'n'
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql

@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "shopSharer",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authshopsharereff8d053",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
