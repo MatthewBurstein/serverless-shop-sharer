@@ -4,7 +4,7 @@ const NewListForm = (props) => {
   const [name, setName] = useState("")
 
   return (
-    <div class="component-container">
+    <div className="component-container">
       <h1>
         Add a new list
       </h1>

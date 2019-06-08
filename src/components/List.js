@@ -1,14 +1,15 @@
 import React from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
 
-const List = (props) => {
+const List = ({ lists }) => {
   return (
-    <div class="component-container">
+    <div className="component-container">
       <h1>
-        I'm a list
+        Lists
       </h1>
       <div>
-        Some lists will go here
+        <ul>
+          {lists.map(list => <li>{list.name}</li>)}
+        </ul>
       </div>
     </div>
   )
