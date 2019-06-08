@@ -1,6 +1,6 @@
 import React from 'react'
 
-const List = ({ lists }) => {
+const Lists = ({ lists }) => {
   return (
     <div className="component-container">
       <h1>
@@ -8,11 +8,11 @@ const List = ({ lists }) => {
       </h1>
       <div>
         <ul>
-          {lists.map(list => <li>{list.name}</li>)}
+          {lists.map(list => <li key={list.id}>{list.name}</li>)}
         </ul>
       </div>
     </div>
   )
 }
 
-export default List
+export default Lists

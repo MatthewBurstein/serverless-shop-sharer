@@ -1,6 +1,7 @@
 const listLists = `query listLists {
   listLists{
     items{
+      id
       name
     }
   }
