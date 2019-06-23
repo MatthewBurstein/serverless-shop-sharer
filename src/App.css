@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .component-container {
@@ -7,4 +8,16 @@
   margin: 10px;
   padding: 10px;
   max-width: 300px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 10px;
+  padding: 0px;
+}
+
+li {
+  text-align: left;
+  margin: 0;
+  padding: 0;
 }

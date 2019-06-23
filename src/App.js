@@ -4,8 +4,10 @@ import awsconfig from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
 import './App.css';
 import Lists from './components/Lists'
+import ListDetails from './components/ListDetails'
 import NewListForm from './components/NewListForm'
 import listLists from './graphql/queries/listLists'
+import getList from './graphql/queries/getList'
 import addList from './graphql/mutations/addList'
 
 Amplify.configure(awsconfig)
@@ -16,7 +18,7 @@ const signUpConfig = {
 
 function App() {
   const [lists, setLists] = useState([])
-
+  const [currentList, setCurrentList] = useState({})
   useEffect(() => {
     const fetchLists = async () => {
       const result = await API.graphql(graphqlOperation(listLists))
@@ -27,6 +29,8 @@ function App() {
     fetchLists()
   }, [])
 
+
+
   const handleNewListSubmit = async listName => {
     const listDetails = { name: listName }
 
@@ -34,10 +38,33 @@ function App() {
     console.log(newList)
   }
 
+  const fetchListItems = async listId => {
+    const result = await API.graphql(graphqlOperation(getList, { listId }))
+    const returnedList = {
+      id: result.data.getList.id,
+      items: result.data.getList.items.items,
+      name: result.data.getList.name
+    }
+    console.log('returnedList', returnedList)
+    setCurrentList(returnedList)
+  }
+
+  const hasCurrentList = () => Object.keys(currentList).length > 0
+
+  const renderCurrentList = () => {
+    return <ListDetails list={currentList}/>
+  }
+
   return (
     <div className="App">
-      <NewListForm sendData={handleNewListSubmit}/>
-      <Lists lists={lists}/>
+      <div>
+        <NewListForm sendData={handleNewListSubmit}/>
+        <Lists
+          fetchListItems={fetchListItems}
+          lists={lists}
+        />
+      </div>
+      {hasCurrentList() && renderCurrentList()}
     </div>
   );
 }

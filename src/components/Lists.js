@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Lists = ({ lists }) => {
+const Lists = ({ lists, fetchListItems }) => {
   return (
     <div className="component-container">
       <h1>
@@ -8,7 +8,15 @@ const Lists = ({ lists }) => {
       </h1>
       <div>
         <ul>
-          {lists.map(list => <li key={list.id}>{list.name}</li>)}
+          {lists.map(list => {
+            return(
+              <li key={list.id}>
+                <button onClick={() => fetchListItems(list.id)}>
+                  {list.name}
+                </button>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>
