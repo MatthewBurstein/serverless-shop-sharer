@@ -1,5 +1,5 @@
 const listLists = `query listLists {
-  listLists{
+  listLists(limit: 1000) {
     items{
       id
       name
