@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 
-const ListDetails = ({ list }) => {
+const ListDetails = ({ list, createItem }) => {
   const [name, setName] = useState('')
+  const [isLoadingItems, setIsLoadingItems]= useState(false)
+  console.log(list)
 
   const hasItems = () => list.items.length > 0
 
   const handleSubmit = (e) => {
+    setIsLoadingItems(true)
     e.preventDefault()
-    console.log(e.event.target)
+    createItem(name, list.id).then(() => {
+      setIsLoadingItems(false)
+    })
   }
 
   return(

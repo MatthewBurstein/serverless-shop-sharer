@@ -9,6 +9,7 @@ import NewListForm from './components/NewListForm'
 import listLists from './graphql/queries/listLists'
 import getList from './graphql/queries/getList'
 import addList from './graphql/mutations/addList'
+import addItem from './graphql/mutations/addItem'
 
 Amplify.configure(awsconfig)
 
@@ -42,10 +43,19 @@ function App() {
     setCurrentList(returnedList)
   }
 
+  const createItem = async (itemName, listId) => {
+    const itemDetails = {
+      name: itemName,
+      listId
+    }
+    await API.graphql(graphqlOperation(addItem, itemDetails))
+    return fetchListItems(listId)
+  }
+
   const hasCurrentList = () => Object.keys(currentList).length > 0
 
   const renderCurrentList = () => {
-    return <ListDetails list={currentList}/>
+    return <ListDetails list={currentList} createItem={createItem}/>
   }
 
   return (
