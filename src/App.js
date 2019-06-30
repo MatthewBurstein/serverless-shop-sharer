@@ -40,6 +40,7 @@ function App() {
       items: result.data.getList.items.items,
       name: result.data.getList.name
     }
+    console.log('returnedList: ', returnedList)
     setCurrentList(returnedList)
   }
 

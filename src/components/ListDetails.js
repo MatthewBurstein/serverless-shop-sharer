@@ -1,36 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ItemCard from './ItemCard';
+import NewItemForm from './NewItemForm';
 
 const ListDetails = ({ list, createItem }) => {
-  const [name, setName] = useState('')
-  const [isLoadingItems, setIsLoadingItems]= useState(false)
-  console.log(list)
-
   const hasItems = () => list.items.length > 0
 
-  const handleSubmit = (e) => {
-    setIsLoadingItems(true)
-    e.preventDefault()
-    createItem(name, list.id).then(() => {
-      setIsLoadingItems(false)
-    })
-  }
-
   return(
-    <>
+    <div className="component-container">
       <h1>{list.name}</h1>
-      <form>
-        <label htmlFor="name">
-          Name
-        </label>
-        <input type="text" name="name" value={name} onChange={e => setName(e.target.value)}></input>
-        <button onClick={e => handleSubmit(e)}>Submit</button>
-      </form>
+      <NewItemForm createItem={createItem} listId={list.id} />
       <ul>
-      { hasItems() && list.items.map((item, id) => {
-        return(<li>{item.name}</li>)
-      })}
+        { hasItems() && list.items.map((item, idx) => {
+          return(<ItemCard key={idx} item={item}/>)
+        })}
       </ul>
-    </>
+    </div>
   )
 }
 
