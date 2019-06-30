@@ -5,7 +5,7 @@ type List @model {
 }
 type Item @model {
   id: ID!
-  title: String!
+  name: String!
   list: List @connection(name: "ListItems")
   notes: [Note] @connection(name: "ItemNotes")
 }

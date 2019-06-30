@@ -19,23 +19,17 @@ const signUpConfig = {
 function App() {
   const [lists, setLists] = useState([])
   const [currentList, setCurrentList] = useState({})
-  useEffect(() => {
-    const fetchLists = async () => {
-      const result = await API.graphql(graphqlOperation(listLists))
-      console.log(result)
-      setLists(result.data.listLists.items)
-    }
+  useEffect(() => { fetchLists() }, [])
 
-    fetchLists()
-  }, [])
+  const fetchLists = async () => {
+    const result = await API.graphql(graphqlOperation(listLists))
+    setLists(result.data.listLists.items)
+  }
 
-
-
-  const handleNewListSubmit = async listName => {
+  const createList = async listName => {
     const listDetails = { name: listName }
-
-    const newList = await API.graphql(graphqlOperation(addList, listDetails))
-    console.log(newList)
+    await API.graphql(graphqlOperation(addList, listDetails))
+    return fetchLists()
   }
 
   const fetchListItems = async listId => {
@@ -45,7 +39,6 @@ function App() {
       items: result.data.getList.items.items,
       name: result.data.getList.name
     }
-    console.log('returnedList', returnedList)
     setCurrentList(returnedList)
   }
 
@@ -58,7 +51,9 @@ function App() {
   return (
     <div className="App">
       <div>
-        <NewListForm sendData={handleNewListSubmit}/>
+        <NewListForm
+          createList={createList}
+        />
         <Lists
           fetchListItems={fetchListItems}
           lists={lists}

@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 
-const NewListForm = ({ sendData }) => {
+const NewListForm = ({ createList }) => {
   const [name, setName] = useState("")
+  const [isLoadingLists, setIsLoadingLists] = useState(false)
 
   const handleSubmit = event => {
+    setIsLoadingLists(true)
     event.preventDefault()
-    sendData(name)
+    createList(name).then(() => {
+      setIsLoadingLists(false)
+    })
   }
 
   return (
@@ -18,7 +22,12 @@ const NewListForm = ({ sendData }) => {
           List name
         </label>
         <input type="text" name="name" value={name} onChange={e => setName(e.target.value)}></input>
-        <button onClick={e => handleSubmit(e)}>Submit</button>
+        <button
+          onClick={e => handleSubmit(e)}
+          disabled={isLoadingLists}
+        >
+          {isLoadingLists ? "Loading" : "Submit"}
+        </button>
       </form>
     </div>
   )

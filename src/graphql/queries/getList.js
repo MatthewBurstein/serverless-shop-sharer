@@ -5,7 +5,7 @@ const getList = `query getList($listId:ID!) {
     items {
       items {
         id
-        title
+        name
       }
     }
   }
